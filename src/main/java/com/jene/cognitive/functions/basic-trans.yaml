@@ -1,0 +1,12 @@
+name: geolocation
+tenant: public
+namespace: default
+jar: job-pulsar-flink-fat-1.0.0.jar
+className: com.jene.cognitive.functions.BasicTransform
+inputs: input-topic
+#inputs:
+#- persistent://public/default/input-topic
+output: output-topic
+#output: persistent://public/default/output-topic
+processingGuarantees: EFFECTIVELY_ONCE
+brokerServiceUrl: pulsar://127.0.0.1:6650

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: flink-jobmanager
+spec:
+  replicas: 1
+  selector:
+    component: jobmanager
+  template:
+    metadata:
+      labels:
+        app: flink
+        component: jobmanager
+    spec:
+      containers:
+      - name: jobmanager
+        image: flink/jene:latest
+        args: ["jobmanager", "jobmanager.rpc.address=jobmanager.flink.svc.cluster.local", "blob.server.port=50101"]r
+        ports:
+          - containerPort: 6123
+          - containerPort: 8081
+          - containerPort: 50101
+        resources:
+          requests:
+            cpu: 100m

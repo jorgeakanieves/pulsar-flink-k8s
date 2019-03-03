@@ -1,0 +1,61 @@
+def pulsarFlinkVersion = '2.2.1'
+def flinkVersion = '1.7.1'
+def scalaBinaryVersion = '2.11'
+def lombokVersion = '1.18.4'
+def mockitoVersion = '1.10.19'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.flink', name: 'flink-streaming-java_' + scalaBinaryVersion, version: flinkVersion
+    compile group: 'org.apache.flink', name: 'flink-table_' + scalaBinaryVersion, version: flinkVersion
+    compile group: 'org.apache.flink', name: 'flink-connector-elasticsearch6_2.11', version: flinkVersion
+    compile group: 'org.apache.pulsar', name: 'pulsar-flink', version: pulsarFlinkVersion
+    compile group: 'org.projectlombok', name: 'lombok', version: lombokVersion
+    compile 'org.mockito:mockito-core:1.10.19'
+    compile 'org.jboss.arquillian.junit:arquillian-junit-standalone:1.1.14.Final'
+    compile group: 'org.apache.pulsar', name: 'pulsar-io-elastic-search', version: pulsarFlinkVersion
+    implementation 'com.google.maps:google-maps-services:0.9.1'
+    implementation 'org.slf4j:slf4j-simple:1.7.25'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile "com.googlecode.json-simple:json-simple:1.1.1"
+    compile 'org.apache.flink:flink-cep_2.11:1.7.1'
+    compile 'io.reactivex.rxjava2:rxjava:2.1.3'
+
+}
+
+jar {
+    baseName = "job-pulsar-flink"
+    version = "1.0.0"
+    manifest {
+        attributes "Main-Class": "com.jene.cognitive.PulsarConsumerFlink"
+    }
+
+}
+
+task fatJar(type: Jar) {
+    baseName = "job-pulsar-flink-fat"
+    zip64=true
+    manifest.from jar.manifest
+    classifier = '1.0.0'
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    with jar
+}
+
+artifacts {
+    archives fatJar
+}
+
