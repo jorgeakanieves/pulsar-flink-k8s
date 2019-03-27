@@ -7,8 +7,7 @@ Before putting something in production, You have to know about the capabilities 
 ## Overview
 
 The main purpouse is building an end to end from an Apache Pulsar subscription and a Flink pipeline with Elasticsearch and other
-Pulsar topics as sinks. The use cases and business logic are slightly naive but related to fraud detection, duplicated cards, process transaction geolocations async and
-create some aggregations.
+Pulsar topics as sinks. The use cases and business logic are slightly naive but related to fraud detection, duplicated cards, process transaction geolocations async and create some aggregations.
 
 ## Features
 
@@ -77,6 +76,7 @@ Running unit tests:
 ### Pulsar dashboard
 
 ![picture](imgs/pulsar-dashboard.jpg)
+
 
 ## Contributing
 
