@@ -14,13 +14,13 @@ import org.slf4j.LoggerFactory;
 /**
  * Implements a streaming transaction processing on pulsar topics.
  *
- * <p>Example usage:
+ * <p>Example usage parameters:
  *   --service-url pulsar://pulsar_cluster:6650 --input-topic tx_in --subscription tx_sub --output-topic tx_out --elasticsearch elastic_cluster
  *   --high-value-topic high_value --dup-card-topic dup_card --tx-index transactions --tx-type transaction --fraud-index treasury
  *   --fraud-type highvalue --dup-card-index fraud --dup-card-type dup_cards --countries-index accounts --countries-type countries
  *   --log-topic log_tx --parallelism 1
  *
- *   @uthor Jorge Nieves
+ *   @author Jorge Nieves
  */
 public class PulsarConsumerFlink {
 
