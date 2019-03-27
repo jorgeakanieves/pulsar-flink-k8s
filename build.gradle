@@ -14,6 +14,7 @@ repositories {
 }
 
 dependencies {
+//  compile group: 'org.apache.flink', name: 'flink-streaming-java_' + scalaBinaryVersion, version: flinkVersion
     compile group: 'org.apache.flink', name: 'flink-streaming-java_' + scalaBinaryVersion, version: flinkVersion
     compile group: 'org.apache.flink', name: 'flink-table_' + scalaBinaryVersion, version: flinkVersion
     compile group: 'org.apache.flink', name: 'flink-connector-elasticsearch6_2.11', version: flinkVersion
